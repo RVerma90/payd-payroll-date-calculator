@@ -1,5 +1,23 @@
 import { PayrollDate } from '../types'
 
+const isSaturday = (date: Date): boolean => {
+  return date.toString().includes('Sat')
+}
+
+const isSunday = (date: Date): boolean => {
+  return date.toString().includes('Sun')
+}
+
+export function calibrateSalaryForWeekend(date: Date): string {
+  if(isSaturday(date)) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1).toString().slice(0,15)
+  } else if(isSunday(date)) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate() - 2).toString().slice(0,15)
+  } else {
+  return date.toString().slice(0,15)
+  }
+}
+
 export function getPayrollDates(dateValue: string): PayrollDate[] {
   const dateObject: Date = new Date(dateValue)
 
@@ -15,7 +33,7 @@ export function getPayrollDates(dateValue: string): PayrollDate[] {
     const currentMonthBonusDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 15);
 
     const dates = {
-      salaryDate: currentMonthSalaryDate.toString().slice(0,15),
+      salaryDate: calibrateSalaryForWeekend(currentMonthSalaryDate),
       bonusDate: currentMonthBonusDate.toString().slice(0,15),
     }
     
