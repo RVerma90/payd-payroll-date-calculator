@@ -18,6 +18,16 @@ export function calibrateSalaryForWeekend(date: Date): string {
   }
 }
 
+export function calibrateBonusForWeekend(date: Date): string {
+  if(isSaturday(date)) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate() + 4).toString().slice(0,15)
+  } else if(isSunday(date)) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate() + 3).toString().slice(0,15)
+  } else {
+  return date.toString().slice(0,15)
+  }
+}
+
 export function getPayrollDates(dateValue: string): PayrollDate[] {
   const dateObject: Date = new Date(dateValue)
 
@@ -34,7 +44,7 @@ export function getPayrollDates(dateValue: string): PayrollDate[] {
 
     const dates = {
       salaryDate: calibrateSalaryForWeekend(currentMonthSalaryDate),
-      bonusDate: currentMonthBonusDate.toString().slice(0,15),
+      bonusDate: calibrateBonusForWeekend(currentMonthBonusDate),
     }
     
     allDates.push(dates)
