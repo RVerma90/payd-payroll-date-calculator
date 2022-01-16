@@ -2,3 +2,23 @@
   padding: 0 2rem;
   text-align: center;
 }
+
+.tableContainer { 
+  margin: 0 auto;
+}
+
+.tableContainer td, .tableContainer th {
+  border: 1px solid #ddd;
+  padding: 0.3rem;
+}
+
+.tableContainer tr:nth-child(even){background-color: #f2f2f2;}
+
+.tableContainer tr:hover {background-color: #ddd;}
+
+.tableContainer th {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: #0070f3;
+  color: white;
+}
