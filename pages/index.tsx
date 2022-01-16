@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-import { Footer } from '../components'
+import { Calculator, Footer } from '../components'
 
 const Home: NextPage = () => {
   return (
@@ -18,9 +18,7 @@ const Home: NextPage = () => {
           Welcome to <a href="https://nextjs.org">Payd</a>
         </h1>
 
-        <p className={styles.description}>
-          Get started by entering the start date
-        </p>
+        <Calculator />
 
       </main>
 

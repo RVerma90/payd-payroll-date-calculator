@@ -29,13 +29,6 @@
   font-size: 4rem;
 }
 
-.title,
-.description {
+.title {
   text-align: center;
-}
-
-.description {
-  margin: 4rem 0;
-  line-height: 1.5;
-  font-size: 1.5rem;
 }
