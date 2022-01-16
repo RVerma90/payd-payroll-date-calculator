@@ -18,6 +18,19 @@ export const Calculator = () => {
     setPayrollDates(payrollDates)
   }
 
+  const handleCSVExport = () => {
+    // TODO: refactoring opportunity to abstract business logic / use other packages to avoid building from scratch
+    const csvHeader = 'Salary date,Bonus date\r\n'
+    const header = Object.keys(payrollDates[0])
+    const csvData = payrollDates.map((dates: PayrollDate) => header?.map(fieldName => dates[fieldName])).join('\r\n')
+
+    const csv = csvHeader + csvData
+    const csvFile = new Blob([csv], {type: "text/csv"})
+    const exportURL = URL.createObjectURL(csvFile)
+    
+    window.location.assign(exportURL)
+  }
+
   return (
     <div className={styles.container}>
       <h2>
@@ -44,6 +57,7 @@ export const Calculator = () => {
             ))}
           </tbody>        
         </table>
+        {payrollDates.length > 0 && <button className={styles.csvButton} onClick={handleCSVExport}>Export as CSV</button>}
     </div>
   )
 }
