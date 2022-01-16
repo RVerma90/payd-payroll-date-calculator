@@ -8,23 +8,31 @@ const isSunday = (date: Date): boolean => {
   return date.toString().includes('Sun')
 }
 
+const convertDateToReadableString = (date: Date): string => {
+  return date.toString().slice(0,15)
+}
+
 export function calibrateSalaryForWeekend(date: Date): string {
   if(isSaturday(date)) {
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1).toString().slice(0,15)
+    const calibratedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - 1)
+    return convertDateToReadableString(calibratedDate)
   } else if(isSunday(date)) {
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate() - 2).toString().slice(0,15)
+    const calibratedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() - 2)
+    return convertDateToReadableString(calibratedDate)
   } else {
-  return date.toString().slice(0,15)
+    return convertDateToReadableString(date)
   }
 }
 
 export function calibrateBonusForWeekend(date: Date): string {
   if(isSaturday(date)) {
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate() + 4).toString().slice(0,15)
+    const calibratedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 4)
+    return convertDateToReadableString(calibratedDate)
   } else if(isSunday(date)) {
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate() + 3).toString().slice(0,15)
+    const calibratedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 3)
+    return convertDateToReadableString(calibratedDate)
   } else {
-  return date.toString().slice(0,15)
+    return convertDateToReadableString(date)
   }
 }
 
